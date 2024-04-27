@@ -29,12 +29,16 @@ public class Main {
                 switch (homeScreenChoice) {
                     case 1:
                         viewAllProducts(scanner, inventory);
+                        break;
                     case 2:
-                       // viewCart(scanner);
+                        viewCart(scanner);
+                        break;
                     case 3:
                         isRunning = false;
+                        break;
                     default:
                         System.out.println("Invalid... Please select a valid choice");
+                        break;
 
                 }
             }
@@ -72,45 +76,48 @@ public class Main {
             int productScreenChoice = scanner.nextInt();
             switch (productScreenChoice) {
                 case 1:
-                    // filter products
+//                     filter products;
                     break;
                 case 2:
-                    // ShoppingCart.addProduct(scanner);
+//                     ShoppingCart.addProduct(scanner);
                     break;
                 case 3:
                     isRunning = false;
+                    break;
                 default:
                     System.out.println("Invalid. Please select a valid choice");
+                    break;
+            }
+        }
+    }
+
+
+    public static void viewCart(Scanner scanner) {
+        boolean isRunning = true;
+        while (isRunning) {
+            //  ShoppingCart.displayCart();
+            System.out.println("What would you like to do?");
+            System.out.println("\t1. Check Out");
+            System.out.println("\t2. Remove a product.");
+            System.out.println("\t3. Go back to home screen.");
+
+            int cartScreenChoice = scanner.nextInt();
+            switch (cartScreenChoice) {
+                case 1:
+//                    ShoppingCart.checkout(scanner);
+                    break;
+                case 2:
+//                    ShoppingCart.removeProduct(scanner);
+                    break;
+                case 3:
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("Invalid...Please select a valid choice");
+                    break;
             }
         }
     }
 }
 
 
-//    public static void viewCart(Scanner scanner) {
-//        boolean isRunning = true;
-//        while (isRunning) {
-//          //  ShoppingCart.displayCart();
-//            System.out.println("What would you like to do?");
-//            System.out.println("\t1. Check Out");
-//            System.out.println("\t2. Remove a product.");
-//            System.out.println("\t3. Go back to home screen.");
-//
-//            int cartScreenChoice = scanner.nextInt();
-//            switch (cartScreenChoice) {
-//                case 1:
-//                //    ShoppingCart.checkout(scanner);
-//                    break;
-//                case 2:
-//                  //  ShoppingCart.removeProduct(scanner);
-//                    break;
-//                case 3:
-//                    isRunning = false;
-//                    break;
-//                default:
-//                    System.out.println("Invalid...Please select a valid choice");
-//            }
-//        }
-//    }
-//
-//
