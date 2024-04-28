@@ -1,57 +1,105 @@
+//package com.ps;
+//
+//import java.util.ArrayList;
+//import java.util.Iterator;
+//import java.util.List;
+//
+//public class ShoppingCart {
+//    private List<Product> cartItems;
+//
+//    // Constructor initializes the cart,
+//    //Requirement meets - add products to a customer's cart.
+//    public ShoppingCart() {
+//        cartItems = new ArrayList<>();
+//    }
+//
+//    //Requirement meets - Add a product to shopping cart
+//    public void addProduct(Product product) {
+//        cartItems.add(product);
+//    }
+//
+//    //Requirements meets - Remove a product from shopping cart and prompt customer te remove product
+//    public void removeProduct(String sku){
+//        Iterator<Product> iterator = cartItems.iterator();
+//        while (iterator.hasNext()) {
+//            Product product = iterator.next();
+//            if(product.getSku().equals(sku)) {
+//                iterator.remove();
+//                System.out.println("Product removed: ") + product.getProductName());
+//                return;
+//            }
+//        }
+//        System.out.println("Product not found.");
+//    }
+//
+//
+//}
+
 package com.ps;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Iterator;
-import java.util.List;
 
 public class ShoppingCart {
-    private List<Product> cartItems;
+    private Map<Product, Integer> cartItems;
 
-    // Constructor initializes the cart, supporting the requirement to add products to customer's cart.
     public ShoppingCart() {
-        cartItems = new ArrayList<>();
+        cartItems = new HashMap<>();
     }
 
-    // Requirement fulfilled; "add item to customer cart"
-    public void addProduct(Product product){
-        cartItems.add(product);
+    public void addProduct(Product product, int quantity) {
+        cartItems.put(product, cartItems.getOrDefault(product, 0) + quantity);
+        System.out.println(quantity + " x " + product.getProductName() + " added to cart.");
     }
 
-    // Requirement fulfilled; "remove item from customer cart"
-    public void removeProduct(String sku) {
-        // We start walking down the line of students (products).
-        Iterator<Product> iterator = cartItems.iterator();
-
-        // As long as there are more students, we keep going.
+    public void removeProduct(String sku, int quantityToRemove) {
+        Iterator<Map.Entry<Product, Integer>> iterator = cartItems.entrySet().iterator();
         while (iterator.hasNext()) {
-            // We look at the card of the next student in line.
-            Product product = iterator.next();
-
-            // We check if the number on the card is the one we're looking for (sku).
-            if (product.getSku().equals(sku)) {
-                // If we find the student (product) with the right number (sku),
-                // we ask them to step out of the line (remove the product).
-                iterator.remove();
-                System.out.println("Product removed: " + product.getProductName());
+            Map.Entry<Product, Integer> entry = iterator.next();
+            if (entry.getKey().getSku().equals(sku)) {
+                if (entry.getValue() > quantityToRemove) {
+                    entry.setValue(entry.getValue() - quantityToRemove);
+                    System.out.println(quantityToRemove + " x " + entry.getKey().getProductName() + " removed from cart.");
+                } else {
+                    System.out.println(entry.getValue() + " x " + entry.getKey().getProductName() + " removed from cart.");
+                    iterator.remove();
+                }
                 return;
             }
         }
-        System.out.println("Product not found.");
+        System.out.println("Product not found or incorrect quantity.");
     }
-    /*
-In this code:
-* Iterator<Product> is like having a helper who keeps track of which student you're talking to in the line.
-* iterator.hasNext() is like asking the helper, "Is there another student for me to check?"
-* Product product = iterator.next() is like moving to the next student in line and looking at their number.
-* product.getSku().equals(sku) is like comparing the number on the card to the number you're looking for, number 5.
-* iterator.remove() is like asking the student with the right number to leave the line.
- */
-   // ----------------------------
 
 
+    public void displayCart() {
+        if (cartItems.isEmpty()) {
+            System.out.println("Your cart is empty.");
+        } else {
+            cartItems.forEach((product, quantity) ->
+                    System.out.println(quantity + " x " + product + " in cart."));
+        }
+    }
 
-
+    public void checkout() {
+        if (cartItems.isEmpty()) {
+            System.out.println("Your cart is empty.");
+            return;
+        }
+        double total = 0;
+        for (Map.Entry<Product, Integer> entry : cartItems.entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
+            double subtotal = product.getPrice() * quantity;
+            total += subtotal;
+            System.out.println(quantity + " x " + product.getProductName() + " at $" + product.getPrice() + " each: $" + subtotal);
+        }
+        System.out.println("Total: $" + total);
+        cartItems.clear();
+        System.out.println("Checkout complete.");
+    }
 }
+
 
 
 
