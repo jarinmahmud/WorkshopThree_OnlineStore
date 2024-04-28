@@ -59,7 +59,7 @@ public class Main {
                     addProductToCart(products, scanner, cart);
                     break;
                 case 2:
-                    keepGoing = searchProducts(products, scanner);
+                    keepGoing = searchProducts(products, scanner, cart);
                     break;
                 case 3:
                     keepGoing = false;
@@ -101,7 +101,7 @@ public class Main {
     }
 
 
-    private static boolean searchProducts(List<Product> products, Scanner scanner) {
+    private static boolean searchProducts(List<Product> products, Scanner scanner, ShoppingCart cart) {
         System.out.println("Choose your search type:");
         System.out.println("\t1. By Product Name");
         System.out.println("\t2. By Department");
@@ -142,21 +142,21 @@ public class Main {
 
         if (!filteredProducts.isEmpty()) {
             filteredProducts.forEach(System.out::println);
-            return postSearchActions(filteredProducts, scanner);
+            return postSearchActions(filteredProducts, scanner, cart);
         } else {
             System.out.println("No products found.");
         }
         return true;
     }
 
-    private static boolean postSearchActions(List<Product> filteredProducts, Scanner scanner) {
+    private static boolean postSearchActions(List<Product> filteredProducts, Scanner scanner, ShoppingCart cart) {
         System.out.println("Actions: 1 - Add Product to Cart, 2 - Return to Main Menu");
         int action = scanner.nextInt();
         scanner.nextLine(); // Consume newline left-over
 
         switch (action) {
             case 1:
-                addProductToCart(filteredProducts, scanner, new ShoppingCart());  // Needs adjustment to pass actual ShoppingCart
+                addProductToCart(filteredProducts, scanner, cart);  // Fixed from
                 return false;  // Keep the user in the search context
             case 2:
                 return true;  // Return to main menu
