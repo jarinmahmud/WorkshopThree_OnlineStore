@@ -33,4 +33,8 @@ public class Product {
     public String toString() {
         return "SKU: " + sku + ", Name: " + productName + ", Price: $" + price + ", Department: " + department;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
