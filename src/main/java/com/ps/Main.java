@@ -10,19 +10,13 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-<<<<<<< HEAD
         // Load products from a file
-=======
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
         List<Product> products = loadProducts("products.txt");
         ShoppingCart cart = new ShoppingCart();
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
-<<<<<<< HEAD
         // Main loop of the program
-=======
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
         while (isRunning) {
             System.out.println("Welcome to The Best Online Store!");
             System.out.println("Please indicate what you would like to do");
@@ -52,10 +46,7 @@ public class Main {
         scanner.close();
     }
 
-<<<<<<< HEAD
     // Method to display products and manage interactions
-=======
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
     private static void displayProducts(List<Product> products, Scanner scanner, ShoppingCart cart) {
         boolean keepGoing = true;
         while (keepGoing) {
@@ -83,10 +74,7 @@ public class Main {
         }
     }
 
-<<<<<<< HEAD
     // Method to add products to the shopping cart
-=======
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
     private static void addProductToCart(List<Product> products, Scanner scanner, ShoppingCart cart) {
         boolean addingProducts = true;
         while (addingProducts) {
@@ -96,10 +84,7 @@ public class Main {
             int quantity = scanner.nextInt();
             scanner.nextLine();  // Consume newline left-over
 
-<<<<<<< HEAD
             // Try adding the product to the cart
-=======
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
             boolean productAdded = products.stream()
                     .filter(p -> p.getSku().equalsIgnoreCase(sku))
                     .findFirst()
@@ -120,11 +105,7 @@ public class Main {
         }
     }
 
-<<<<<<< HEAD
     // Method to handle product search
-=======
-
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
     private static boolean searchProducts(List<Product> products, Scanner scanner, ShoppingCart cart) {
         System.out.println("Choose your search type:");
         System.out.println("\t1. By Product Name");
@@ -173,10 +154,7 @@ public class Main {
         return true;
     }
 
-<<<<<<< HEAD
     // Method to handle actions after search
-=======
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
     private static boolean postSearchActions(List<Product> filteredProducts, Scanner scanner, ShoppingCart cart) {
         System.out.println("Actions: 1 - Add Product to Cart, 2 - Return to Main Menu");
         int action = scanner.nextInt();
@@ -194,10 +172,7 @@ public class Main {
         }
     }
 
-<<<<<<< HEAD
     // Method to display shopping cart and manage cart interactions
-=======
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
     private static void displayCart(ShoppingCart cart, Scanner scanner) {
         boolean keepGoing = true;
         while (keepGoing) {
@@ -228,10 +203,7 @@ public class Main {
         }
     }
 
-<<<<<<< HEAD
     // Method to load products from a file
-=======
->>>>>>> 3db31a36bf092fd10256d645f020513be4e763e4
     public static List<Product> loadProducts(String filePath) {
         List<Product> products = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
