@@ -28,7 +28,7 @@ public class ShoppingCart {
         while (iterator.hasNext()) {
             Map.Entry<Product, Integer> entry = iterator.next();
             // Check if the product matches the SKU provided
-            if (entry.getKey().getSku().equals(sku)) {
+            if (entry.getKey().getSku().equalsIgnoreCase(sku)) {
                 if (entry.getValue() > quantityToRemove) {
                     // Decrease quantity of the product
                     entry.setValue(entry.getValue() - quantityToRemove);
